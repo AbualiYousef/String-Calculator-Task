@@ -3,6 +3,7 @@
 open StringCalculator.Lib.DelimiterFactory
 open StringCalculator.Lib.NumberParser
 open StringCalculator.Lib.NumberValidator
+open StringCalculator.Lib.Validators.InputValidator
 
 module StringCalculator =
 
@@ -11,6 +12,7 @@ module StringCalculator =
             0
         else
             let delimiters, numbers = getDelimitersAndNumbers input
+            validateInput (numbers, delimiters)
             let parsedNumbers = parseNumbers (numbers, delimiters)
             validateNumbers parsedNumbers
             parsedNumbers |> Array.sum
