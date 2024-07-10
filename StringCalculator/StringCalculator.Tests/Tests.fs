@@ -47,3 +47,11 @@ let ``Add should throw exception for negative numbers`` (input: string, expected
 [<InlineData("1000,0", 1000)>]
 let ``Add should ignore numbers bigger than 1000`` (input: string, expected: int) =
     Add input |> should equal expected
+    
+[<Theory>]
+[<InlineData("//[***]\n1***2***3", 6)>]
+[<InlineData("//[abc]\n1abc2abc3", 6)>]
+[<InlineData("//[$#:*]\n5$#:*6$#:*3", 14)>]
+
+let ``Add should support delimiters of any length`` (input: string, expected: int) =
+    Add input |> should equal expected
