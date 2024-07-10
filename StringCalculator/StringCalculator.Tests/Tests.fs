@@ -25,3 +25,11 @@ let ``Add should handle unknown amount of numbers`` (input: string, expected: in
 [<InlineData("1,2\n3,4", 10)>]
 let ``Add should handle new lines between numbers`` (input: string, expected: int) =
     Add input |> should equal expected
+    
+[<Theory>]
+[<InlineData("//;\n1;2", 3)>]
+[<InlineData("//$\n1$2", 3)>]
+[<InlineData("//.\n1.2.3", 6)>]
+[<InlineData("//\n\n1\n2\n3", 6)>]
+let ``Add should support different delimiters`` (input: string, expected: int) =
+    Add input |> should equal expected
