@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="DelimiterParsers\IDelimiterParser.fs" />
+        <Compile Include="DelimiterParsers\SingleDelimiterParser.fs" />
+        <Compile Include="DelimiterParsers\MultipleDelimiterParser.fs" />
+        <Compile Include="DelimiterFactory.fs" />
+        <Compile Include="NumberParser.fs" />
+        <Compile Include="Exceptions\NegativeNumberException.fs" />
+        <Compile Include="NumberValidator.fs" />
+        <Compile Include="StringCalculator.fs" />
+    </ItemGroup>
+
+</Project>
