@@ -73,3 +73,17 @@ let ``Add should support multiple delimiters`` (input: string, expected: int) =
 [<InlineData("//[***][$$$$]\n1***2$$$$3", 6)>]
 let ``Add should support multiple delimiters with length longer than 1 char`` (input: string, expected: int) =
     add input |> should equal expected
+    
+[<Theory>]
+[<InlineData("1,\n")>]
+[<InlineData("1,\n2")>]
+[<InlineData("1\n,2")>]
+[<InlineData("1,,2")>]
+[<InlineData("1\n\n2")>]
+[<InlineData("//;\n1;;2")>]
+[<InlineData("//.\n1..2")>]
+[<InlineData("//.\n1..2..")>]
+
+let ``Add should throw exception for consecutive delimiters`` (input: string) =
+    let ex = Assert.Throws<InvalidDelimiterSequenceException>(fun () -> add input |> ignore)
+    ex.Message |> should equal "Invalid input: consecutive delimiters are not allowed"
