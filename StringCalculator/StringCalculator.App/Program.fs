@@ -2,6 +2,10 @@
 
 open System
        
+type NegativeNumberException(message: string) =
+    inherit Exception(message)
+    override this.Message = message
+   
 let Add (numbers: string) : int =
     if String.IsNullOrWhiteSpace(numbers) then
         0
@@ -18,4 +22,9 @@ let Add (numbers: string) : int =
                 ([| ","; "\n" |], numbers)
 
         let splitNumbers = numbers.Split(delimiters, StringSplitOptions.None)
-        splitNumbers |> Array.map Int32.Parse |> Array.sum
+        let parsedNumbers = splitNumbers |> Array.map Int32.Parse
+        let negatives = parsedNumbers |> Array.filter (fun n -> n < 0)
+        if negatives.Length > 0 then
+            let message = negatives |> Array.map string |> String.concat ","
+            raise (NegativeNumberException $"Negatives not allowed: %s{message}")
+        parsedNumbers |> Array.sum

@@ -33,3 +33,10 @@ let ``Add should handle new lines between numbers`` (input: string, expected: in
 [<InlineData("//\n\n1\n2\n3", 6)>]
 let ``Add should support different delimiters`` (input: string, expected: int) =
     Add input |> should equal expected
+    
+[<Theory>]
+[<InlineData("1,-2", "Negatives not allowed: -2")>]
+[<InlineData("1,-2,-3", "Negatives not allowed: -2,-3")>]
+let ``Add should throw exception for negative numbers`` (input: string, expectedMessage: string) =
+    let ex = Assert.Throws<NegativeNumberException>(fun () -> Add input |> ignore)
+    ex.Message |> should equal expectedMessage
