@@ -22,7 +22,7 @@ let Add (numbers: string) : int =
                 ([| ","; "\n" |], numbers)
 
         let splitNumbers = numbers.Split(delimiters, StringSplitOptions.None)
-        let parsedNumbers = splitNumbers |> Array.map Int32.Parse
+        let parsedNumbers = splitNumbers |> Array.map Int32.Parse |> Array.filter (fun n -> n <= 1000)
         let negatives = parsedNumbers |> Array.filter (fun n -> n < 0)
         if negatives.Length > 0 then
             let message = negatives |> Array.map string |> String.concat ","

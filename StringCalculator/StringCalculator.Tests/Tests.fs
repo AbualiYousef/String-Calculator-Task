@@ -40,3 +40,10 @@ let ``Add should support different delimiters`` (input: string, expected: int) =
 let ``Add should throw exception for negative numbers`` (input: string, expectedMessage: string) =
     let ex = Assert.Throws<NegativeNumberException>(fun () -> Add input |> ignore)
     ex.Message |> should equal expectedMessage
+    
+[<Theory>]
+[<InlineData("2,1001", 2)>]
+[<InlineData("1000,1001,2", 1002)>]
+[<InlineData("1000,0", 1000)>]
+let ``Add should ignore numbers bigger than 1000`` (input: string, expected: int) =
+    Add input |> should equal expected
