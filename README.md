@@ -1,4 +1,4 @@
-# StringCalculatorTemplate
+# String Calculator Task
 
 ![build and test](https://github.com/AbualiYousef/String-Calculator-Task/workflows/build%20and%20test/badge.svg)
 
