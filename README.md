@@ -82,3 +82,19 @@ To run the project locally, follow these steps:
 1. Clone the repository:
    ```bash
    git clone https://github.com/AbualiYousef/String-Calculator-Task.git
+
+2. Navigate to the project directory:   
+   ```bash
+   cd String-Calculator-Task
+   
+3. Build the project:
+    ```bash
+    dotnet build
+    
+4. Run the tests:
+   ```bash
+   dotnet test
+
+5. Run the application:
+   ```bash
+   dotnet run --project StringCalculatorApp
