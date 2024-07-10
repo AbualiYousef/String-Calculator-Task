@@ -12,7 +12,9 @@
         <Compile Include="DelimiterFactory.fs" />
         <Compile Include="NumberParser.fs" />
         <Compile Include="Exceptions\NegativeNumberException.fs" />
+        <Compile Include="Exceptions\InvalidDelimiterSequenceException.fs" />
         <Compile Include="NumberValidator.fs" />
+        <Compile Include="Validators\InputValidator.fs" />
         <Compile Include="StringCalculator.fs" />
     </ItemGroup>
 
