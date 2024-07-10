@@ -24,7 +24,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\StringCalculator.App\StringCalculator.App.fsproj" />
+      <ProjectReference Include="..\StringCalculator.Lib\StringCalculator.Lib.fsproj" />
     </ItemGroup>
+
+<!--    <ItemGroup>-->
+<!--      <ProjectReference Include="..\StringCalculator.App\StringCalculator.App.fsproj" />-->
+<!--    </ItemGroup>-->
 
 </Project>
