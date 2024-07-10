@@ -1,5 +1,7 @@
 # StringCalculatorTemplate
 
+![build and test](https://github.com/AbualiYousef/String-Calculator-Task/workflows/build%20and%20test/badge.svg)
+
 This repository contains the implementation of a String Calculator in F#. The goal of this task is to develop a simple calculator that can add numbers in a string format, following specific requirements. The project demonstrates adherence to clean code practices, SOLID principles, and the use of design patterns.
 
 ## Task Description
