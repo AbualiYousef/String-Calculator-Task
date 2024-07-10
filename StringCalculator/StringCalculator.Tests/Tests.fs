@@ -1,8 +1,14 @@
 module Tests
 
-open System
 open Xunit
+open FsUnit.Xunit
+open Program
 
-[<Fact>]
-let ``My test`` () =
-    Assert.True(true)
+[<Theory>]
+[<InlineData("", 0)>]
+[<InlineData("1", 1)>]
+[<InlineData("1,2", 3)>]
+[<InlineData("5,6", 11)>]
+
+let ``Add should handle 0, 1, or 2 numbers`` (input: string, expected: int) =
+    Add input |> should equal expected
