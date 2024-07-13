@@ -13,6 +13,7 @@ let main argv =
     with
     | :? NegativeNumberException as ex -> printfn $"Error: %s{ex.Message}"
     | :? InvalidDelimiterSequenceException as ex -> printfn $"Error: %s{ex.Message}"
+    | :? InvalidInputException as ex -> printfn $"Error: %s{ex.Message}"
     | ex -> printfn $"Unhandled exception: %s{ex.Message}"
 
     0
