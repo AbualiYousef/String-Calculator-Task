@@ -4,14 +4,10 @@ open StringCalculator.Lib.DelimiterParsers
 open StringCalculator.Lib.Exceptions
 open StringCalculator.Lib.Validators.DelimiterValidator
 
-
 module DelimiterFactory =
 
     let private createDelimiterParser (delimiterPart: string) : IDelimiterParser =
-        if
-            delimiterPart.Contains("][")
-            || (delimiterPart.StartsWith("[") && delimiterPart.EndsWith("]"))
-        then
+        if delimiterPart.StartsWith("[") && delimiterPart.EndsWith("]") then
             MultipleDelimiterParser() :> IDelimiterParser
         else
             SingleDelimiterParser() :> IDelimiterParser
@@ -35,4 +31,5 @@ module DelimiterFactory =
                 let delimiters = parser.Parse(delimiterPart)
                 (delimiters, input.Substring(endIndex + 1))
         else
-            ([| ","; "\n" |], input)
+            let defaultDelimiters = [| ","; "\n" |]
+            (defaultDelimiters, input)
