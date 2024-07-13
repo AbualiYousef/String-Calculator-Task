@@ -87,3 +87,16 @@ let ``Add should support multiple delimiters with length longer than 1 char`` (i
 let ``Add should throw exception for consecutive delimiters`` (input: string) =
     let ex = Assert.Throws<InvalidDelimiterSequenceException>(fun () -> add input |> ignore)
     ex.Message |> should equal "Invalid input: consecutive delimiters are not allowed"
+    
+    
+[<Theory>]
+[<InlineData("//[***\n1***2")>]
+[<InlineData("//][***]\n1***2")>]
+[<InlineData("//[***]1***2")>]
+[<InlineData("//[**][$\n1$2")>]
+[<InlineData("//[***][%%%]1***2%%%3")>]
+[<InlineData("//[**\n1**2")>]
+[<InlineData("//[**][\n1**2")>]
+let ``Add should throw exception for malformed input`` (input: string) =
+    let ex = Assert.Throws<InvalidInputException>(fun () -> add input |> ignore)
+    ex.Message |> should equal "Invalid input: malformed custom delimiter"
