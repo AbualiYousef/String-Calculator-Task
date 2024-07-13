@@ -85,7 +85,7 @@ To run the project locally, follow these steps:
 
 2. Navigate to the project directory:   
    ```bash
-   cd String-Calculator-Task
+   cd String-Calculator-Task/StringCalculator
    
 3. Build the project:
     ```bash
@@ -97,4 +97,4 @@ To run the project locally, follow these steps:
 
 5. Run the application:
    ```bash
-   dotnet run --project StringCalculatorApp
+   dotnet run --project StringCalculator.App
