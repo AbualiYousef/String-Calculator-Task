@@ -2,7 +2,7 @@
 
 open StringCalculator.Lib.DelimiterFactory
 open StringCalculator.Lib.NumberParser
-open StringCalculator.Lib.NumberValidator
+open StringCalculator.Lib.Validators.NumberValidator
 open StringCalculator.Lib.Validators.InputValidator
 
 module StringCalculator =

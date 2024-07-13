@@ -6,16 +6,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="DelimiterParsers\IDelimiterParser.fs" />
-        <Compile Include="DelimiterParsers\SingleDelimiterParser.fs" />
-        <Compile Include="DelimiterParsers\MultipleDelimiterParser.fs" />
-        <Compile Include="DelimiterFactory.fs" />
-        <Compile Include="NumberParser.fs" />
-        <Compile Include="Exceptions\NegativeNumberException.fs" />
-        <Compile Include="Exceptions\InvalidDelimiterSequenceException.fs" />
-        <Compile Include="NumberValidator.fs" />
-        <Compile Include="Validators\InputValidator.fs" />
-        <Compile Include="StringCalculator.fs" />
+        <Compile Include="DelimiterParsers\IDelimiterParser.fs"/>
+        <Compile Include="DelimiterParsers\SingleDelimiterParser.fs"/>
+        <Compile Include="DelimiterParsers\MultipleDelimiterParser.fs"/>
+        <Compile Include="NumberParser.fs"/>
+        <Compile Include="Exceptions\NegativeNumberException.fs"/>
+        <Compile Include="Exceptions\InvalidDelimiterSequenceException.fs"/>
+        <Compile Include="Exceptions\InvalidInputException.fs" />
+        <Compile Include="Validators\InputValidator.fs"/>
+        <Compile Include="Validators\DelimiterValidator.fs"/>
+        <Compile Include="Validators\NumberValidator.fs" />
+        <Compile Include="DelimiterFactory.fs"/>
+        <Compile Include="StringCalculator.fs"/>
     </ItemGroup>
 
 </Project>
