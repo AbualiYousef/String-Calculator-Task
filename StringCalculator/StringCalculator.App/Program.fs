@@ -33,13 +33,18 @@ let main argv =
 //         inherit Exception(message)
 //         override this.Message = message
 //
-//     let private createDelimiterParser (delimiterPart: string) : string[] =
-//         if delimiterPart.StartsWith("[") && delimiterPart.EndsWith("]") then
-//             delimiterPart.Split([| '['; ']' |], StringSplitOptions.RemoveEmptyEntries)
-//         else
-//             [| delimiterPart |]
+//     let private parseMultipleDelimiters (delimiterPart: string) : string[] =
+//         delimiterPart.Split([| '['; ']' |], StringSplitOptions.RemoveEmptyEntries)
 //
-//     let private parseDelimiters (input: string) : string[] * string =
+//     let private parseSingleDelimiter (delimiterPart: string) : string[] = [| delimiterPart |]
+//
+//     let private createDelimiterParser (delimiterPart: string) : string -> string[] =
+//         if delimiterPart.StartsWith("[") && delimiterPart.EndsWith("]") then
+//             parseMultipleDelimiters
+//         else
+//             parseSingleDelimiter
+//
+//     let private extractDelimitersAndNumbers (input: string) : string[] * string =
 //         if input.StartsWith("//") then
 //             if input.Length < 4 then
 //                 raise (InvalidInputException("Invalid input: malformed custom delimiter"))
@@ -53,12 +58,14 @@ let main argv =
 //                     raise (InvalidInputException("Invalid input: malformed custom delimiter"))
 //
 //                 let delimiterPart = input.Substring(2, endIndex - 2)
-//                 let delimiters = createDelimiterParser delimiterPart
-//                 (delimiters, input.Substring(endIndex + 1))
+//                 let parser = createDelimiterParser delimiterPart
+//                 let delimiters = parser delimiterPart
+//                 let numbers = input.Substring(endIndex + 1)
+//                 (delimiters, numbers)
 //         else
 //             let defaultDelimiters = [| ","; "\n" |]
 //             (defaultDelimiters, input)
-//         
+//
 //     let parseNumbers (numbers: string, delimiters: string[]) : int[] =
 //         let splitNumbers = numbers.Split(delimiters, StringSplitOptions.RemoveEmptyEntries)
 //         splitNumbers |> Array.map Int32.Parse
@@ -71,16 +78,16 @@ let main argv =
 //             raise (NegativeNumberException $"Negatives not allowed: %s{message}")
 //
 //         numbers
-//         
+//
 //     let filterNumbers (numbers: int[]) : int[] =
 //         numbers |> Array.filter (fun n -> n <= 1000)
-//     
+//
 //     let add (input: string) : int =
 //         if String.IsNullOrWhiteSpace(input) then
 //             0
 //         else
 //             input
-//             |> parseDelimiters
+//             |> extractDelimitersAndNumbers
 //             |> fun (delimiters, numbers) -> parseNumbers (numbers, delimiters)
 //             |> validateNegativeNumbers
 //             |> filterNumbers
@@ -90,16 +97,13 @@ let main argv =
 //     let main argv =
 //         printfn "Enter a string of numbers to add (e.g., \"1,2,3\"):"
 //         let input = Console.ReadLine()
-//         
+//
 //         try
 //             let result = add (input.Replace("\\n", "\n"))
 //             printfn $"The sum is: %d{result}"
 //         with
-//         | :? NegativeNumberException as ex ->
-//             printfn $"Error: %s{ex.Message}"
-//         | :? InvalidInputException as ex ->
-//             printfn $"Error: %s{ex.Message}"
-//         | ex ->
-//             printfn $"Unhandled exception: %s{ex.Message}"
-//         
+//         | :? NegativeNumberException as ex -> printfn $"Error: %s{ex.Message}"
+//         | :? InvalidInputException as ex -> printfn $"Error: %s{ex.Message}"
+//         | ex -> printfn $"Unhandled exception: %s{ex.Message}"
+//
 //         0
